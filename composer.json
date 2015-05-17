@@ -1,5 +1,5 @@
 {
-	"name" : "SaiAshirwadInformatia\mailBandyaPHPWrapper",
+	"name" : "SaiAshirwadInformatia/mailBandyaPHPWrapper",
 	"type" : "library",
 	"description" : "mailBandya PHP Wrapper Classes",
 	"keywords" : ["mailbandya", "email marketing", "bandya"],
