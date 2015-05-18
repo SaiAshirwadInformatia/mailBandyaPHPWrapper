@@ -40,7 +40,7 @@ class Contacts
     public function delete($id)
     {
         if ($id > 0) {
-            return $this->bandya->call('conatcts/' . $id, 'DELETE');
+            return $this->bandya->call('contacts/' . $id, 'DELETE');
         }
         throw new Exception("Contact ID not found for deleteing contact");
     }
