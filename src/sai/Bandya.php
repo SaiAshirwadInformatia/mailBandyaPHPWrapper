@@ -26,8 +26,7 @@ final class Bandya
 
     public function call($url, $method = 'GET', $data = array())
     {
-        $response = $this->restmanager->execute($this->baseurl . $url, $method, 
-            $data);
+        $response = $this->restmanager->execute($this->baseurl . $url, $method, $data);
         if ($response['status_code'] > 205) {
             throw new Exception($response['response']['error_code'], 
                 $response['response']['error_msg']);
