@@ -18,7 +18,9 @@
 		}
 	],
 	"autoload" : [
-		"start.php"
+		"psr-0" : {
+			"sai\\" : "src"
+		}
 	],
 	"require" : {
 		"php" : ">=5.3"
