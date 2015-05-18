@@ -17,9 +17,11 @@
 			"homepage" : "http://praveenmenezes.com"
 		}
 	],
-	"autoload" : [
-		"start.php"
-	],
+	"autoload" : {
+		"psr-0" : {
+			"sai\\" : "src"
+		}
+	},
 	"require" : {
 		"php" : ">=5.3"
 	},
