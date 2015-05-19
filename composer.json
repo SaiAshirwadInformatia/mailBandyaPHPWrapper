@@ -15,6 +15,11 @@
 			"name" : "Praveen Menezes",
 			"email" : "pmenezes@saiashirwad.com",
 			"homepage" : "http://praveenmenezes.com"
+		},
+		{
+			"name" : "Tink Tank Designs",
+			"email" : "info@tinktank.co.in",
+			"homepage" : "http://tinktank.co.in"
 		}
 	],
 	"autoload" : {
