@@ -14,7 +14,7 @@
  * Define Constants that can be used globally in entire application
  */
 define('DS', DIRECTORY_SEPARATOR);
-define('SAI_ABS_PATH', __DIR__ . DS);
+define('SAI_MAILBANDYA_PATH', __DIR__ . DS);
 
 header("Developed-By: Sai Ashirwad Informatia");
 header("X-Powered-By: Sai Ashirwad Informatia");

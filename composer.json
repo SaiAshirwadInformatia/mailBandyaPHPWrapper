@@ -1,5 +1,5 @@
 {
-	"name" : "sai-ashirwad-informatia/mailbandya-php-wrapper",
+	"name" : "sai-ashirwad-informatia/mailbandya",
 	"type" : "library",
 	"description" : "mailBandya PHP Wrapper Classes",
 	"keywords" : ["mailbandya", "email marketing", "bandya"],
@@ -15,11 +15,18 @@
 			"name" : "Praveen Menezes",
 			"email" : "pmenezes@saiashirwad.com",
 			"homepage" : "http://praveenmenezes.com"
+		},
+		{
+			"name" : "Tink Tank Designs",
+			"email" : "info@tinktank.co.in",
+			"homepage" : "http://tinktank.co.in"
 		}
 	],
-	"autoload" : [
-		"start.php"
-	],
+	"autoload" : {
+		"psr-0" : {
+			"sai\\" : "src"
+		}
+	},
 	"require" : {
 		"php" : ">=5.3"
 	},

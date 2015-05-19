@@ -20,14 +20,17 @@ final class Bandya
         if (! is_null($apikey)) {
             $this->apikey = $apikey;
         }
-        $this->baseurl = 'http://app.mailbandya.com/api/';
+        $this->baseurl = 'http://localhost/mailBandya/api/';
         $this->restmanager = new Rest();
     }
 
-    public function call($url, $method = 'GET', $data = array())
+    public function call($url, $method = 'GET', $data = array(), $header = array())
     {
+        if (! empty($this->apikey)) {
+            $header['user-access-token'] = $this->apikey;
+        }
         $response = $this->restmanager->execute($this->baseurl . $url, $method, 
-            $data);
+            $data, $header);
         if ($response['status_code'] > 205) {
             throw new Exception($response['response']['error_code'], 
                 $response['response']['error_msg']);

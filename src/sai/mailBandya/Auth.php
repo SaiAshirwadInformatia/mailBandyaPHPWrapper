@@ -25,4 +25,30 @@ class Auth
         }
         return $ret;
     }
+
+    public function logout()
+    {
+        $this->bandya->call('auth', 'DELETE');
+    }
+
+    public function addAPIKey($api_key)
+    {
+        if ($api_key != null) {
+            $ret = $this->bandya->call('auth/validateToken', 'POST', 
+                array(
+                    "access_token" => $api_key
+                ));
+            if (isset($ret['id']) > 0) {
+                $this->bandya->setAPIKey($api_key);
+                return array(
+                    "msg" => "Successful",
+                    "email" => $ret['email'],
+                    "user_id" => $ret['id'],
+                    "username" => $ret['username'],
+                    "access_token" => $api_key
+                );
+            }
+            throw new \Exception("Invalid Access Token");
+        }
+    }
 }
