@@ -8,9 +8,9 @@ class Auth
 
     var $bandya;
 
-    public function __construct()
+    public function __construct($api_key = null)
     {
-        $this->bandya = Bandya::getInstance();
+        $this->bandya = Bandya::getInstance($api_key);
     }
 
     public function login($username, $password)
@@ -31,24 +31,6 @@ class Auth
         $this->bandya->call('auth', 'DELETE');
     }
 
-    public function addAPIKey($api_key)
-    {
-        if ($api_key != null) {
-            $ret = $this->bandya->call('auth/validateToken', 'POST', 
-                array(
-                    "access_token" => $api_key
-                ));
-            if (isset($ret['id']) > 0) {
-                $this->bandya->setAPIKey($api_key);
-                return array(
-                    "msg" => "Successful",
-                    "email" => $ret['email'],
-                    "user_id" => $ret['id'],
-                    "username" => $ret['username'],
-                    "access_token" => $api_key
-                );
-            }
-            throw new \Exception("Invalid Access Token");
-        }
-    }
+    public function validateAPIKey($api_key)
+    {}
 }
