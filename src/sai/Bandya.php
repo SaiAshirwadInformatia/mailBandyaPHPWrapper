@@ -17,11 +17,11 @@ final class Bandya
 
     private function __construct($apikey = null)
     {
+        $this->baseurl = 'http://app.mailbandya.com/api/';
+        $this->restmanager = new Rest();
         if (! is_null($apikey)) {
             $this->addAPIKey($apikey);
         }
-        $this->baseurl = 'http://app.mailbandya.com/api/';
-        $this->restmanager = new Rest();
     }
 
     public function call($url, $method = 'GET', $data = array(), $header = array())
