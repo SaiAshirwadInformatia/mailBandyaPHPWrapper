@@ -12,12 +12,12 @@ class AuthTest extends PHPUnit_Framework_TestCase
 
     public function testLogin()
     {
-        $return = $this->auth->login('sai', 'Welcome@123');
+        $return = $this->auth->login('username', 'password');
         $this->assertEquals('Successful', $return['msg']);
     }
     
     public function testAddAPIKey(){
-        $return = $this->auth->addAPIKey('$2y$10$ql7z.14kJXLKBtCuos4T6ep/Le1TnSAgmA80cx0foBMi9S/KzVbJe');
+        $return = $this->auth->addAPIKey('623849yoidgauifd78te');
         $this->assertEquals('Successful', $return['msg']);
     }
     
