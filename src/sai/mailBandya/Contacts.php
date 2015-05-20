@@ -8,9 +8,9 @@ class Contacts
 
     var $bandya;
 
-    public function __construct()
+    public function __construct($api_key = null)
     {
-        $this->bandya = Bandya::getInstance();
+        $this->bandya = Bandya::getInstance($api_key);
     }
 
     public function create($data)

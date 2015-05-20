@@ -18,9 +18,9 @@ final class Bandya
     private function __construct($apikey = null)
     {
         if (! is_null($apikey)) {
-            $this->apikey = $apikey;
+            $this->addAPIKey($apikey);
         }
-        $this->baseurl = 'http://localhost/mailBandya/api/';
+        $this->baseurl = 'http://app.mailbandya.com/api/';
         $this->restmanager = new Rest();
     }
 
@@ -40,15 +40,36 @@ final class Bandya
         }
     }
 
-    public function setAPIKey($apikey)
+    public function setAPIKey($api_key)
     {
-        $this->apikey = $apikey;
+        $this->apikey = $api_key;
     }
 
-    public static function getInstance()
+    public function addAPIKey($api_key)
+    {
+        if ($api_key != null) {
+            $ret = $this->call('auth/validateToken', 'POST', 
+                array(
+                    "access_token" => $api_key
+                ));
+            if (isset($ret['id']) > 0) {
+                $this->setAPIKey($api_key);
+                return array(
+                    "msg" => "Successful",
+                    "email" => $ret['email'],
+                    "user_id" => $ret['id'],
+                    "username" => $ret['username'],
+                    "access_token" => $api_key
+                );
+            }
+            throw new \Exception("Invalid Access Token");
+        }
+    }
+
+    public static function getInstance($apikey = null)
     {
         if (is_null(self::$_instance)) {
-            self::$_instance = new self();
+            self::$_instance = new self($apikey);
         }
         return self::$_instance;
     }
