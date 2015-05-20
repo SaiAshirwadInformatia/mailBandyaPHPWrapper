@@ -1,5 +1,5 @@
 {
-	"name" : "sai-ashirwad-informatia/mailbandya",
+	"name" : "sailabs/mailbandya",
 	"type" : "library",
 	"description" : "mailBandya PHP Wrapper Classes",
 	"keywords" : ["mailbandya", "email marketing", "bandya"],
