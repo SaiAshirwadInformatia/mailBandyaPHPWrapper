@@ -21,10 +21,10 @@ class Campaigns
         throw new Exception("Data required for campaign creation");
     }
 
-    public function get($id)
+    public function get($data)
     {
-        if (! is_null($id)) {
-            return $this->bandya->call('campaigns/' . $id, 'GET');
+        if (! is_null($data)) {
+            return $this->bandya->call('campaigns', 'GET', $data);
         }
         throw new Exception("Campaign ID not found");
     }
@@ -37,10 +37,10 @@ class Campaigns
         throw new Exception("Data not found to update campaigns");
     }
 
-    public function delete($id)
+    public function delete($data)
     {
-        if ($id > 0) {
-            return $this->bandya->call('campaigns/' . $id, 'DELETE');
+        if ($data > 0) {
+            return $this->bandya->call('campaigns', 'DELETE', $data);
         }
         throw new Exception("Campaign ID not found for deleting campaign");
     }
