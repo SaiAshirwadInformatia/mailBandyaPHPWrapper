@@ -65,6 +65,7 @@ class Rest
         // Ignore SSL certificate verification
         curl_setopt($this->ch, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, false);
+        $this->data = null;
     }
 
     private function prepareRequest()
@@ -84,9 +85,9 @@ class Rest
         }
         switch (strtolower($this->method)) {
             case "get":
-                $data_str = http_build_query($this->data);
-                curl_setopt($this->ch, CURLOPT_URL, $this->url . "?$data_str");
-                // curl_setopt($this->ch, CURLOPT_GET, true);
+                //$data_str = http_build_query($this->data);
+                //curl_setopt($this->ch, CURLOPT_URL, $this->url . "?$data_str");
+                curl_setopt($this->ch, CURLOPT_GET, true);
                 break;
             case "post":
                 curl_setopt($this->ch, CURLOPT_POST, true);
@@ -115,8 +116,8 @@ class Rest
 
     public function execute($url, $method = 'GET', $data = array(), $headers = array())
     {
-        $this->loadData($url, $method, $data, $headers);
         $this->init();
+        $this->loadData($url, $method, $data, $headers);
         $this->prepareRequest();
         
         $response = curl_exec($this->ch);
