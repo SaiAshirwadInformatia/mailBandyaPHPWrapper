@@ -24,7 +24,7 @@ class Contacts
     public function get($data)
     {
         if (! is_null($data)) {
-            return $this->bandya->call('contacts', 'GET', $data);
+            return $this->bandya->call('contacts/' . $data, 'GET');
         }
         throw new Exception("Contact ID not found");
     }
