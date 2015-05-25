@@ -24,7 +24,7 @@ class Campaigns
     public function get($data)
     {
         if (! is_null($data)) {
-            return $this->bandya->call('campaigns', 'GET', $data);
+            return $this->bandya->call('campaigns/' . $data, 'GET');
         }
         throw new Exception("Campaign ID not found");
     }
