@@ -87,7 +87,7 @@ class Rest
             case "get":
                 //$data_str = http_build_query($this->data);
                 //curl_setopt($this->ch, CURLOPT_URL, $this->url . "?$data_str");
-                curl_setopt($this->ch, CURLOPT_GET, true);
+                //curl_setopt($this->ch, CURLOPT_GET, true);
                 break;
             case "post":
                 curl_setopt($this->ch, CURLOPT_POST, true);
