@@ -85,7 +85,7 @@ class Rest
         }
         switch (strtolower($this->method)) {
             case "get":
-                //$data_str = http_build_query($this->data);
+                $data_str = http_build_query($this->data);
                 //curl_setopt($this->ch, CURLOPT_URL, $this->url . "?$data_str");
                 //curl_setopt($this->ch, CURLOPT_GET, true);
                 break;
@@ -109,7 +109,7 @@ class Rest
                 curl_setopt($this->ch, CURLOPT_POSTFIELDS, $json_data);
                 $this->headers['Content-Length'] = strlen($json_data);
             } else {
-                curl_setopt($this->ch, CURLOPT_POSTFIELDS, $this->data);
+                curl_setopt($this->ch, CURLOPT_POSTFIELDS, $data_str);
             }
         }
     }
