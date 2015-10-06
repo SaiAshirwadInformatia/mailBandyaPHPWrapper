@@ -71,7 +71,6 @@ class Rest
     private function prepareRequest()
     {
         curl_setopt($this->ch, CURLOPT_URL, $this->url);
-        $data_str = http_build_query($this->data);
         
         if (! is_null($this->headers) and count($this->headers) > 0) {
             $request_headers = array();
@@ -109,6 +108,7 @@ class Rest
                 curl_setopt($this->ch, CURLOPT_POSTFIELDS, $json_data);
                 $this->headers['Content-Length'] = strlen($json_data);
             } else {
+                $data_str = http_build_query($this->data);
                 curl_setopt($this->ch, CURLOPT_POSTFIELDS, $data_str);
             }
         }
