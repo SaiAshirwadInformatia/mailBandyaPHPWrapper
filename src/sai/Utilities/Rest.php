@@ -85,6 +85,7 @@ class Rest
         }
         switch (strtolower($this->method)) {
             case "get":
+                //$data_str = http_build_query($this->data);
                 //curl_setopt($this->ch, CURLOPT_URL, $this->url . "?$data_str");
                 //curl_setopt($this->ch, CURLOPT_GET, true);
                 break;
