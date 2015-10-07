@@ -149,8 +149,8 @@ class Rest
         }
         $body = substr($response, $header_size);
         
-        if (strpos($responseHeaders['Content-Type'], 'application/json') !==
-             false and ! empty($body)) {
+        if (isset($responseHeaders['Content-Type']) and ! empty($body) and 
+            strpos($responseHeaders['Content-Type'], 'application/json') !== false) {
             $body = json_decode($body, true);
         }
         curl_close($this->ch);
