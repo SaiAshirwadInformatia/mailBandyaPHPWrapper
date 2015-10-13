@@ -65,6 +65,7 @@ class Rest
         // Ignore SSL certificate verification
         curl_setopt($this->ch, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, false);
+        $this->data = null;
     }
 
     private function prepareRequest()
@@ -84,9 +85,9 @@ class Rest
         }
         switch (strtolower($this->method)) {
             case "get":
-                $data_str = http_build_query($this->data);
-                curl_setopt($this->ch, CURLOPT_URL, $this->url . "?$data_str");
-                // curl_setopt($this->ch, CURLOPT_GET, true);
+                //$data_str = http_build_query($this->data);
+                //curl_setopt($this->ch, CURLOPT_URL, $this->url . "?$data_str");
+                //curl_setopt($this->ch, CURLOPT_GET, true);
                 break;
             case "post":
                 curl_setopt($this->ch, CURLOPT_POST, true);
@@ -108,15 +109,16 @@ class Rest
                 curl_setopt($this->ch, CURLOPT_POSTFIELDS, $json_data);
                 $this->headers['Content-Length'] = strlen($json_data);
             } else {
-                curl_setopt($this->ch, CURLOPT_POSTFIELDS, $this->data);
+                $data_str = http_build_query($this->data);
+                curl_setopt($this->ch, CURLOPT_POSTFIELDS, $data_str);
             }
         }
     }
 
     public function execute($url, $method = 'GET', $data = array(), $headers = array())
     {
-        $this->loadData($url, $method, $data, $headers);
         $this->init();
+        $this->loadData($url, $method, $data, $headers);
         $this->prepareRequest();
         
         $response = curl_exec($this->ch);
@@ -147,8 +149,8 @@ class Rest
         }
         $body = substr($response, $header_size);
         
-        if (strpos($responseHeaders['Content-Type'], 'application/json') !==
-             false and ! empty($body)) {
+        if (isset($responseHeaders['Content-Type']) and ! empty($body) and 
+            strpos($responseHeaders['Content-Type'], 'application/json') !== false) {
             $body = json_decode($body, true);
         }
         curl_close($this->ch);
