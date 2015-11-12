@@ -8,9 +8,9 @@ class Contacts
 
     var $bandya;
 
-    public function __construct()
+    public function __construct($api_key = null)
     {
-        $this->bandya = Bandya::getInstance();
+        $this->bandya = Bandya::getInstance($api_key);
     }
 
     public function create($data)
@@ -21,10 +21,10 @@ class Contacts
         throw new Exception("Data required for contact creation");
     }
 
-    public function get($id)
+    public function get($data)
     {
-        if (! is_null($id)) {
-            return $this->bandya->call('contacts/' . $id, 'GET');
+        if (! is_null($data)) {
+            return $this->bandya->call('contacts/' . $data, 'GET');
         }
         throw new Exception("Contact ID not found");
     }
@@ -40,7 +40,7 @@ class Contacts
     public function delete($id)
     {
         if ($id > 0) {
-            return $this->bandya->call('contacts/' . $id, 'DELETE');
+            return $this->bandya->call('contacts', 'DELETE', $data);
         }
         throw new Exception("Contact ID not found for deleteing contact");
     }
